@@ -1,0 +1,24 @@
+<h1>
+<a href="#"><%= @post.title %></a> by <%= @post.author.username.capitalize %>
+</h1>
+<div class="small-border">
+  <p>Content:
+    <br>
+    <%= @post.content %>
+  </p>
+</div>
+
+<form class="" action="#" method="post">
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<input type="submit" name="" value="Upvote">
+</form>
+<br>
+<form class="" action="#" method="post">
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<input type="submit" name="" value="Downvote">
+</form>
+<h4>Subs</h4>
+<br>
+<ul class="subs-list">
+  <% @post. %>
+</ul>

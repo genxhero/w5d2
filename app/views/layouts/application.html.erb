@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Redditonrails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  
+  <header>
+    <h3>Welcome to Reddit...you'll never find a more wretched hive of scum and villainy</h3>
+    <% if logged_in? %>
+    <%= current_user.username %> <br>
+    <a href="<%=new_sub_url%>">Create a Sub</a> <br>
+    <a href="<%=subs_url%>">All Subs</a> <br>
+    <form class="" action="<%=session_url%>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="submit" name="" value="Sign Out">
+    </form>
+    <% else %>
+      <a href="<%=new_session_url%>">Sign In</a>
+      <a href="<%=new_user_url%>">Sign Up</a>
+    <% end %>
+  </header>
+
+  <body>
+    
+    <% if flash[:errors] %>
+    <ul class="error-list">
+      <% flash[:errors].each do |error| %>
+      <li><%= error %> </li>
+      <% end %>
+    </ul>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
