@@ -20,15 +20,15 @@ class Post < ApplicationRecord
   foreign_key: :author_id, 
   class_name: :User 
   
-  has_many :sub_posts,
+  has_many :subposts,
   primary_key: :id, 
   foreign_key: :post_id,
   class_name: 'SubPost',
   dependent: :destroy,
-  inverse_of: :sub
+  inverse_of: :post
   
   has_many :subs,
-  through: :sub_posts, #comment
+  through: :subposts, #comment
   source: :sub
   
 end

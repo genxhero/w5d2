@@ -29,12 +29,13 @@ end
 end
 
 50.times do 
+  test_id = Sub.ids.sample
   Post.create!(
     title: Faker::WorldOfWarcraft.hero,
     url: Faker::Internet.url,
     content: Faker::WorldOfWarcraft.quote,
     author_id: User.ids.sample,
-    sub_ids: [Sub.ids.sample]
+    sub_ids: [test_id]
   )
 end
 

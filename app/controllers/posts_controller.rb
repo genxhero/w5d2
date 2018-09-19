@@ -1,6 +1,9 @@
 class PostsController < ApplicationController
   
   before_action :require_login, only: [:edit, :update]
+  def index 
+    @posts = Post.all 
+  end 
   
   def new
     @post = Post.new 
@@ -13,9 +16,11 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.author_id = current_user.id 
-    @post.sub_id = params[:sub_id]
     if @post.save 
-      redirect_to post_url(@post)
+      params[:post][:sub_ids].each do |sub_id|
+        SubPost.create!(sub_id: sub_id, post_id: @post.id)
+      end
+        redirect_to post_url(@post)
     else 
       flash.now[:errors] = @post.errors.full_messages 
       render :new 

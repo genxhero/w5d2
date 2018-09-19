@@ -18,7 +18,16 @@
 <input type="submit" name="" value="Downvote">
 </form>
 <h4>Subs</h4>
-<br>
 <ul class="subs-list">
-  <% @post. %>
+  <% @post.subposts.each do |subpost| %>
+  <li>
+    <a href="<%= sub_url(subpost.sub_id) %>"><%= Sub.find(subpost.sub_id).title.titleize %> </a>
+  </li>
+  <% end %>
 </ul>
+<h3>Comments</h3>
+<a href="#">Comment on this post!</a>
+
+
+
+
